@@ -25,9 +25,9 @@ print(average_sales)
 
 
 
-summary = df.groupby("Category")["Total_Amount"].agg(
-    ["sum", "mean", "max", "min", "count"]
-)
+# summary = df.groupby("Category")["Total_Amount"].agg(
+#     ["sum", "mean", "max", "min", "count"]
+# )
 
-print("\nCategory Summary:")
-print(summary)
+# print("\nCategory Summary:")
+# print(summary)
