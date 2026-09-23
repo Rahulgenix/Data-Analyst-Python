@@ -37,10 +37,34 @@ SELECT
     Category, 
     Region, 
     Sales 
-    FROM sales
-WHERE Sales .= 50000
+FROM sales
+WHERE Sales >= 50000
 ORDER BY Sales DESC;
 """
-result = pd.read_dl_query(query, connection)
+result = pd.read_sql_query(query, connection)
 print("\nSales 50000 or more:")
 print(result)
+
+
+summary_query = """
+SELECT
+    Category,
+    COUNT(*) AS Total_Orders,
+    SUM(Sales) AS Total_Sales,
+    ROUND(AVG(Sales), 2) AS Average_Sales
+FROM sales
+GROUP BY Category
+ORDER BY Total_Sales DESC;
+"""
+
+summary = pd.read_sql_query(
+    summary_query,
+    connection
+)
+
+print("\nCategory Summary:")
+print(summary)
+
+connection.close()
+
+print("\nDatabase connection closed.")
